@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+  db:
+    image: postgres:10.1-alpine
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=testdb
+  web:
+    build: ./backend
+    container_name: django_container
+    command: >
+      bash -c "
+      pipenv run python manage.py migrate &&
+      echo 'from django.contrib.auth import get_user_model;
+      User = get_user_model();
+      User.objects.filter(username=\"admin\").delete();
+      User.objects.create_superuser(\"admin\", \"admin@example.com\", \"admin\")
+      ' | pipenv run python manage.py shell &&
+      pipenv run python manage.py runserver 0.0.0.0:8000
+      "
+    volumes:
+      - ./backend:/var/task
+    ports:
+      - "8000:8000"
+    environment:
+      - DB_PASSWORD=postgres
+      - DB_USER=postgres
+      - DB_NAME=testdb
+      - DB_HOST=db
+      - SECRET_KEY=changeme
+      - DEBUG=True
+    depends_on:
+      - db
+    restart: on-failure

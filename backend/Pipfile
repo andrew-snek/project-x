@@ -1,0 +1,25 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[dev-packages]
+flake8 = "*"
+pytest = "*"
+pytest-django = "*"
+coverage = "*"
+pytest-cov = "*"
+pytest-mock = "*"
+django-extensions = "*"
+zappa = "*"
+
+[packages]
+Django = "*"
+psycopg2 = "*"
+python-decouple = "*"
+djangorestframework = "*"
+djangorestframework-simplejwt = "*"
+django-cors-headers = "*"
+
+[requires]
+python_version = "3.6"
