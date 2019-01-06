@@ -13,3 +13,20 @@ script:
       npm run test:unit &&
       npm run test:e2e -- --config nightwatch.config.js --env headlessChrome
     '
+  - >
+    docker-compose exec
+    -e AWS_SECRET_ACCESS_KEY -e AWS_ACCESS_KEY_ID -e AWS_DEFAULT_REGION
+    -e DB_HOST -e DB_NAME -e DB_USER -e DB_PASSWORD
+    -e ZAPPA_BUCKET
+    web pipenv run bash -c '
+      envsubst < zappa_settings.tpl.json > zappa_settings.json &&
+      zappa update dev
+    '
+  - >
+    docker-compose exec
+    -e AWS_SECRET_ACCESS_KEY -e AWS_ACCESS_KEY_ID -e AWS_DEFAULT_REGION
+    -e FRONT_BUCKET -e VUE_APP_API_HOST=$API_HOST
+    spa bash -c '
+      npm run build &&
+      aws s3 sync ./dist s3://$FRONT_BUCKET
+    '

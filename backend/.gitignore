@@ -1,1 +1,4 @@
 .coverage
+zappa_settings.json
+*.zip
+INFO
