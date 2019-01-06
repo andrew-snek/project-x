@@ -34,3 +34,16 @@ services:
     depends_on:
       - db
     restart: on-failure
+  selenium:
+    image: selenium/standalone-chrome
+  spa:
+    build: ./frontend
+    container_name: vue_container
+    command: bash -c "npm install && npm run serve"
+    volumes:
+      - ./frontend:/vue
+    ports:
+      - "8080:8080"
+    depends_on:
+      - web
+      - selenium
