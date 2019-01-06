@@ -1,12 +1,14 @@
+import Vue from 'vue'
+import Vuetify from 'vuetify'
 import { shallowMount } from '@vue/test-utils'
-import HelloWorld from '@/components/HelloWorld.vue'
+import Welcome from '@/components/Welcome.vue'
 
-describe('HelloWorld.vue', () => {
-  it('renders props.msg when passed', () => {
-    const msg = 'new message'
-    const wrapper = shallowMount(HelloWorld, {
-      propsData: { msg }
-    })
-    expect(wrapper.text()).toMatch(msg)
+Vue.use(Vuetify)
+// we're not using createLocalVue here due to a bug https://github.com/vuetifyjs/vuetify/issues/4068
+
+describe('Welcome.vue', () => {
+  it('renders welcome', () => {
+    const wrapper = shallowMount(Welcome)
+    expect(wrapper.html()).toContain('Welcome')
   })
 })

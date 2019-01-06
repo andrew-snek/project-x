@@ -1,0 +1,5 @@
+version: '3'
+
+services:
+  spa:
+    command: bash -c "sleep 12345"
