@@ -37,3 +37,13 @@ class AbstractRisk(models.Model):
         through='AbstractField',
         related_name='abstract_risks'
     )
+
+
+class Field(models.Model):
+    risk = models.ForeignKey('Risk', on_delete=models.CASCADE, related_name='fields')
+    value = models.CharField(max_length=3000)
+
+
+class Risk(models.Model):
+    name = models.CharField(max_length=30, unique=True)
+    abstract_risk = models.ForeignKey(AbstractRisk, on_delete=models.PROTECT)

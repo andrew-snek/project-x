@@ -1,8 +1,10 @@
 import pytest
 from django.db.models.deletion import ProtectedError
 from rest_framework import generics
-from risks.serializers import FieldTypeSerializer, AbstractRiskSerializer
-from risks.views import FieldTypeList, AbstractRiskList
+from risks.serializers import (
+    FieldTypeSerializer, AbstractRiskSerializer, RiskSerializer
+)
+from risks.views import FieldTypeList, AbstractRiskList, RiskList
 from risks.exceptions import CannotDeleteAlreadyInUse
 
 
@@ -73,3 +75,30 @@ class TestAbstractRiskList:
 
         with pytest.raises(CannotDeleteAlreadyInUse):
             AbstractRiskList.perform_destroy(None, 'instance to destroy')
+
+
+class TestRiskList:
+    def test_subclass(self):
+        assert issubclass(RiskList, generics.ListCreateAPIView)
+        assert issubclass(RiskList, generics.DestroyAPIView)
+
+    def test_queryset(self, mocker):
+        p_all = mocker.patch('risks.views.Risk.objects.all')
+        p_all.return_value = 'test'
+
+        assert list(RiskList().get_queryset()) == list(p_all())
+
+    def test_serializer_class(self):
+        assert RiskList.serializer_class == RiskSerializer
+
+    def test_perform_destroy(self, mocker):
+        p_super = mocker.patch('risks.views.super')
+        p_atomic = mocker.patch('risks.views.transaction.atomic')
+
+        RiskList.perform_destroy(None, 'instance')
+
+        p_atomic.assert_called_once()
+        p_super \
+            .return_value \
+            .perform_destroy \
+            .assert_called_once_with('instance')

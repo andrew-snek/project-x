@@ -46,3 +46,31 @@ def abstract_risk_data():
             ]
         }
     ]
+
+@pytest.fixture
+def risk_data():
+    return [
+        {
+            'name': 'risk_name',
+            'abstract_risk': 1,
+            'fields': [
+                { 'value': 'abc' },
+            ]
+        },
+        {
+            'name': 'risk_name2',
+            'abstract_risk': 2,
+            'fields': [
+                {'value': 'onlythis'},
+                {'value': 'abc'}
+            ]
+        },
+        {
+            'name': 'risk_name3',
+            'abstract_risk': 2,
+            'fields': [
+                {'value': 'onlythis'},
+                {'value': 'abc'}
+            ]
+        }
+    ]

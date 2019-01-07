@@ -1,4 +1,4 @@
-from risks.models import FieldType, AbstractField, AbstractRisk
+from risks.models import FieldType, AbstractField, AbstractRisk, Field, Risk
 
 
 class TestFieldType:
@@ -42,3 +42,14 @@ class TestAbstractRisk:
     def test_fields(self):
         for field in ['name', 'field_types']:
             getattr(AbstractRisk, field)
+
+
+class TestField:
+    def test_fields(self):
+        for field in ['risk', 'value']:
+            getattr(Field, field)
+
+class TestRisk:
+    def test_fields(self):
+        for field in ['name', 'abstract_risk']:
+            getattr(Risk, field)
