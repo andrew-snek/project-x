@@ -1,8 +1,10 @@
+from unittest.mock import patch  # mocker.patch can't be a context manager
 from django.contrib.auth import get_user_model
+from django.db import DatabaseError
 from rest_framework.test import APIClient
 
 
-def test_e2e(db, field_type_data):
+def test_e2e(transactional_db, field_type_data, abstract_risk_data):
     client = APIClient()
 
     # Helpers for testing
@@ -72,3 +74,48 @@ def test_e2e(db, field_type_data):
     # An error, if widget_type is wrong
     field_type_data[2]['widget_type'] = 'WRONG OPTION'
     post(url, field_type_data[2], status=400, err=['widget_type'])
+
+    # Test AbstractRisk
+    abstractrisks_url = 'http://localhost/api/v1/abstractrisks/'
+    url = abstractrisks_url
+    get(url, [])  # No AbstractRisks at first
+
+    # Create first AbstractRisk
+    post(url, abstract_risk_data[0])
+    get(url, [abstract_risk_data[0]])
+
+    # Create second AbstractRisk. This one with two abstract fields.
+    post(url, abstract_risk_data[1])
+    get(url, [abstract_risk_data[0], abstract_risk_data[1]])
+
+    # An error, if posting nonsense
+    post(url, 'nonsense', status=400, err=['non_field_errors'])
+
+    # An error if posting an AbstractRisk with already existing name
+    post(url, abstract_risk_data[1], status=400, err=['name'])
+    get(url, [abstract_risk_data[0], abstract_risk_data[1]])
+
+    # An error if trying to post an empty field
+    for field in abstract_risk_data[2].keys():
+        post(
+            url,
+            {**abstract_risk_data[2], field: ''},
+            status=400,
+            err=[field]
+        )
+        get(url, [abstract_risk_data[0], abstract_risk_data[1]])
+
+    # No changes if error during transaction
+    with patch(
+        'risks.serializers.AbstractField.objects.bulk_create'
+    ) as patched_bulk_create:
+        patched_bulk_create.side_effect = DatabaseError('test db error')
+        try:
+            post(url, abstract_risk_data[2])
+        except DatabaseError as e:
+            assert 'test db error' in e.args
+    get(url, [abstract_risk_data[0], abstract_risk_data[1]])
+
+    # An error if posting a RiskType with wrong FieldType id's
+    abstract_risk_data[2]['abstract_fields'][0]['field_type'] = 'WRONG'
+    post(url, abstract_risk_data[2], status=400, err=['abstract_fields'])
