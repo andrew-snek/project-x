@@ -75,7 +75,10 @@ export default {
   }),
   computed: {
     isAuthenticated () {
-      return false // TODO
+      return this.$store.getters.isAuthenticated
+    },
+    loading () {
+      return this.$store.getters.loading
     }
   }
 }
