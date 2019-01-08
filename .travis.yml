@@ -27,7 +27,8 @@ script:
     -e ZAPPA_BUCKET
     web pipenv run bash -c '
       envsubst < zappa_settings.tpl.json > zappa_settings.json &&
-      zappa update dev
+      zappa update dev &&
+      zappa manage dev migrate
     '
   - >
     docker-compose exec
