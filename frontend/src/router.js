@@ -24,6 +24,6 @@ export default new Router({
       beforeEnter: (to, from, next) => {
         store.dispatch('authLogout').then(() => { next('/login') })
       }
-    },
+    }
   ]
 })
