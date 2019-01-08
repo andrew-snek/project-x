@@ -7,8 +7,8 @@ from rest_framework_simplejwt.views import (
 from risks.views import FieldTypeList, AbstractRiskList, RiskList
 
 urlpatterns = [
-    path('obtain-token/', TokenObtainPairView.as_view()),
-    path('refresh-token/', TokenRefreshView.as_view()),
+    path('api/v1/obtain-token/', TokenObtainPairView.as_view()),
+    path('api/v1/refresh-token/', TokenRefreshView.as_view()),
     path('api/v1/fieldtypes/', FieldTypeList.as_view()),
     path('api/v1/fieldtypes/<int:pk>', FieldTypeList.as_view()),
     path('api/v1/abstractrisks/', AbstractRiskList.as_view()),

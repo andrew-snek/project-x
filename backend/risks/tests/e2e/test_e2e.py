@@ -39,7 +39,7 @@ def test_e2e(transactional_db, field_type_data, abstract_risk_data, risk_data):
     admin.set_password('admin')
     admin.save()
 
-    pair = client.post('http://localhost/obtain-token/', {
+    pair = client.post('http://localhost/api/v1/obtain-token/', {
         'username': 'admin',
         'password': 'admin'
     }).data
