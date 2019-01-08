@@ -5,7 +5,7 @@ from decouple import config
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 SECRET_KEY = config('SECRET_KEY')
-DEBUG = config('DEBUG', cast=bool)
+DEBUG = config('DEBUG', cast=bool, default=False)
 ALLOWED_HOSTS = [config('API_HOST', default='*')]
 
 INSTALLED_APPS = [
