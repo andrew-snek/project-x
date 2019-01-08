@@ -1,8 +1,9 @@
+import axios from 'axios'
 import router from '../../router'
 
 const state = {
-  accessToken: localStorage.getItem('access-token') || '',
-  refreshToken: localStorage.getItem('refresh-token') || '',
+  accessToken: '',
+  refreshToken: '',
   loading: false
 }
 
@@ -79,7 +80,7 @@ const actions = {
 
         dispatch('setRefreshTokenTimeout')
       })
-      .catch(err => {
+      .catch(() => {
         dispatch('authLogout').then(() => { router.push('/login') })
       })
   },

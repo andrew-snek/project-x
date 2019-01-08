@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-layout row v-if="formAlert">
-      <v-flex xs12 sm6 offset-sm3 v-for="err in nonFieldFormErrors">
+      <v-flex xs12 sm6 offset-sm3 v-for="err in nonFieldFormErrors" :key="err">
         <v-alert :value="formAlert" type="error">
           {{ err }}
         </v-alert>
