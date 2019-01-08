@@ -24,7 +24,7 @@ script:
     docker-compose exec
     -e AWS_SECRET_ACCESS_KEY -e AWS_ACCESS_KEY_ID -e AWS_DEFAULT_REGION
     -e DB_HOST -e DB_NAME -e DB_USER -e DB_PASSWORD
-    -e ZAPPA_BUCKET
+    -e ZAPPA_BUCKET -e API_HOST -e VUE_URL
     web pipenv run bash -c '
       envsubst < zappa_settings.tpl.json > zappa_settings.json &&
       zappa update dev &&
