@@ -76,7 +76,6 @@ export default {
           } else {
             this.nonFieldFormErrors = [e.message]
           }
-          console.log(e)
         })
     }
   },
