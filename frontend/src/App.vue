@@ -80,7 +80,17 @@ export default {
     loading () {
       return this.$store.getters.loading
     }
-  }
+  },
+  created () {
+    this.$store.dispatch('autoLogin')
+  },
+  watch: {
+    isAuthenticated (auth) {
+      if (!auth) {
+        this.drawer = false
+      }
+    }
+  },
 }
 </script>
 
