@@ -38,6 +38,12 @@ export default new Router({
       name: 'fieldtypes',
       component: () => import('./components/FieldTypes.vue'),
       beforeEnter: ifAuthenticated
+    },
+    {
+      path: '/abstractrisks',
+      name: 'abstractrisks',
+      component: () => import('./components/AbstractRisks.vue'),
+      beforeEnter: ifAuthenticated
     }
   ]
 })

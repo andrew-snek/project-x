@@ -1,18 +1,18 @@
 import axios from 'axios'
 
 const state = {
-  fieldtypes: []
+  fieldTypes: []
 }
 
 const mutations = {
-  'SET_FIELDTYPES' (state, fieldtypes) {
-    state.fieldtypes = fieldtypes
+  'SET_FIELDTYPES' (state, fieldTypes) {
+    state.fieldTypes = fieldTypes
   },
   'ADD_FIELDTYPE' (state, fieldtype) {
-    state.fieldtypes.push(fieldtype)
+    state.fieldTypes.push(fieldtype)
   },
   'REMOVE_FIELDTYPE' (state, id) {
-    state.fieldtypes = state.fieldtypes.filter(ft => ft.id !== id)
+    state.fieldTypes = state.fieldTypes.filter(ft => ft.id !== id)
   }
 }
 
@@ -54,8 +54,8 @@ const actions = {
 }
 
 const getters = {
-  fieldtypes: state => {
-    return state.fieldtypes
+  fieldTypes: state => {
+    return state.fieldTypes
   }
 }
 

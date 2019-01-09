@@ -101,17 +101,17 @@
     <v-layout row>
       <v-flex xs12 sm6 offset-sm3>
         <div
-        v-if="$store.getters.loading && !fieldtypes.length"
+        v-if="$store.getters.loading && !fieldTypes.length"
         class="text-xs-center display-2">
           ...
         </div>
         <div
-        v-else-if="!$store.getters.loading && !fieldtypes.length"
+        v-else-if="!$store.getters.loading && !fieldTypes.length"
         class="mt-3 text-xs-center body-2 font-weight-light">
           Nothing here yet.
         </div>
         <v-list dense v-else>
-          <v-list-group v-for="fieldType in fieldtypes" :key="fieldType.name" no-action>
+          <v-list-group v-for="fieldType in fieldTypes" :key="fieldType.name" no-action>
             <v-list-tile slot="activator">
               <v-list-tile-content>
                 <v-list-tile-title class="title">{{ fieldType.name }}</v-list-tile-title>
@@ -187,8 +187,8 @@ export default {
     }
   },
   computed: {
-    fieldtypes () {
-      return this.$store.getters.fieldtypes
+    fieldTypes () {
+      return this.$store.getters.fieldTypes
     }
   },
   mounted: function () {
