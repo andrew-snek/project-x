@@ -4,6 +4,14 @@ import store from './store/store'
 
 Vue.use(Router)
 
+const ifAuthenticated = (to, from, next) => {
+  if (store.getters.isAuthenticated) {
+    next()
+  } else {
+    next('/login')
+  }
+}
+
 export default new Router({
   mode: 'history',
   base: process.env.BASE_URL,
@@ -24,6 +32,12 @@ export default new Router({
       beforeEnter: (to, from, next) => {
         store.dispatch('authLogout').then(() => { next('/login') })
       }
+    },
+    {
+      path: '/fieldtypes',
+      name: 'fieldtypes',
+      component: () => import('./components/FieldTypes.vue'),
+      beforeEnter: ifAuthenticated
     }
   ]
 })
