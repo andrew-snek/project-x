@@ -50,6 +50,13 @@ export default new Router({
       name: 'risks',
       component: () => import('./components/Risks.vue'),
       beforeEnter: ifAuthenticated
+    },
+    {
+      path: '/404',
+      component: () => import(/* webpackChunkName: "notFound" */ './components/NotFound.vue')
+    },  
+    {
+      path: '*', redirect: '/404'
     }
   ]
 })
