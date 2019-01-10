@@ -1,4 +1,6 @@
 # Britecore Insurance Web Service
+[![Build Status](https://travis-ci.org/andrew-snek/project-x.svg?branch=master)](https://travis-ci.org/andrew-snek/project-x)
+[![codecov](https://codecov.io/gh/andrew-snek/project-x/branch/master/graph/badge.svg)](https://codecov.io/gh/andrew-snek/project-x)
 *Not just homes, farms and churches!*
 ## Intro
 BIWS is a risk management system which allows to manage different kinds of risks. You can create *Field Types* with various widgets and validation rules, arrange them into collections called *Abstract Risks*, which you can then populate with data.
