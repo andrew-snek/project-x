@@ -13,12 +13,11 @@ install:
 script:
   - docker-compose -f docker-compose.yml -f docker-compose.test.yml up -d
   - ci_env=`bash <(curl -s https://codecov.io/env)`
-  - upload_codecov="bash <(curl -s https://codecov.io/bash)"
   - >
     docker-compose exec $ci_env web pipenv run
     bash -c '
       pytest -s --cov=./ &&
-      eval "$upload_codecov"
+      bash <(curl -s https://codecov.io/bash)
     '
   - >
     docker-compose exec
