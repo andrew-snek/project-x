@@ -123,10 +123,10 @@
               v-for="af in abstractRisk.abstract_fields" :key="af.label"
               :class="{'ml-2': $vuetify.breakpoint.smAndDown}"
               >
-                <v-flex xs3>
+                <v-flex xs4>
                   <span class="body-2">{{ af.label }}</span>
                 </v-flex>
-                <v-flex xs9>
+                <v-flex xs8>
                   <span class="body-1">{{ fieldTypes.find(ft => ft.id === af.field_type).name }}</span>
                 </v-flex>
               </v-layout>

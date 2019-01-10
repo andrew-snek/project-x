@@ -94,9 +94,7 @@
                   </v-textarea>
                   <v-menu
                   v-else-if="widgetType === 2"
-                  ref="datePickerMenu"
                   :close-on-content-click="true"
-                  v-model="datePickerMenu"
                   :nudge-right="40"
                   :return-value.sync="date"
                   lazy
@@ -168,10 +166,10 @@
             </v-list-tile>
             <v-container>
               <v-layout>
-                <v-flex xs2 class="body-2">
+                <v-flex xs4 class="body-2">
                   Abstract Risk
                 </v-flex>
-                <v-flex xs10>
+                <v-flex xs8>
                   <span class="body-1 text-xs-left">
                     {{ abstractRisks.find(ar => ar.id === risk.abstract_risk).name }}
                   </span>
@@ -184,10 +182,10 @@
               :class="{'ml-2': $vuetify.breakpoint.smAndDown}"
               :key="i"
               >
-                <v-flex xs2 class="body-2">
+                <v-flex xs4 class="body-2">
                   {{ af.label }}
                 </v-flex>
-                <v-flex xs10>
+                <v-flex xs8>
                   <span class="body-1 text-xs-left">{{ risk.fields[i].value }}</span>
                 </v-flex>
               </v-layout>

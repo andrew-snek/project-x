@@ -119,20 +119,20 @@
             </v-list-tile>
             <v-container>
               <v-layout>
-                <v-flex xs3>
+                <v-flex xs4>
                   <span class="body-2">Widget type</span>
                 </v-flex>
-                <v-flex xs9>
+                <v-flex xs8>
                   <span class="body-1">
                     {{ widgetTypes.find(wt => wt.value === fieldType.widget_type).text }}
                   </span>
                 </v-flex>
               </v-layout>
               <v-layout>
-                <v-flex xs3>
+                <v-flex xs4>
                   <span class="body-2">Regular expression</span>
                 </v-flex>
-                <v-flex xs9>
+                <v-flex xs8>
                   <span class="body-1">{{ fieldType.regex }}</span>
                 </v-flex>
               </v-layout>
