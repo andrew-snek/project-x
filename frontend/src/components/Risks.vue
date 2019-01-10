@@ -205,7 +205,6 @@ export default {
   data () {
     return {
       'date': new Date().toISOString().substr(0, 7),
-      'datePickerMenu': false,
       'newRisk': {
         'name': '',
         'abstract_risk': '',
