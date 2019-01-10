@@ -8,7 +8,11 @@ BIWS is a risk management system which allows to manage different kinds of risks
 The project is built using **Django + DRF** for a backend - deployed to **AWS Lambda** using **Zappa**, and **VueJS** SPA for a frontend - deployed to an **S3** bucket and served by **CloudFront**. Both these parts(as well as **PostgreSQL** database and **Selenium** standalone testing server) are **docker**ized, and application is deployed automatically by the continuous integration service **Travis-CI** every time there is a push to master with passing tests.
 
 So, it's just "docker-compose up" to build and run with hot reload on code change, and then just "git push" to deploy. Ain't this it, chief?
+
 **Currently deployed instance**, login with *admin:admin*: https://d6aht25yrtwu9.cloudfront.net
+
+![Risk creation UI](https://user-images.githubusercontent.com/45121397/50987101-4bb08e00-1511-11e9-9923-0b166302a576.png)
+
 
 ## Tech stack, detailed:
 ### Database
