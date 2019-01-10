@@ -1,7 +1,7 @@
 # Britecore Insurance Web Service
+*Not just homes, farms and churches!*
 [![Build Status](https://travis-ci.org/andrew-snek/project-x.svg?branch=master)](https://travis-ci.org/andrew-snek/project-x)
 [![codecov](https://codecov.io/gh/andrew-snek/project-x/branch/master/graph/badge.svg)](https://codecov.io/gh/andrew-snek/project-x)
-*Not just homes, farms and churches!*
 ## Intro
 BIWS is a risk management system which allows to manage different kinds of risks. You can create *Field Types* with various widgets and validation rules, arrange them into collections called *Abstract Risks*, which you can then populate with data.
 
@@ -27,7 +27,7 @@ Here is the diagram of our database, with tables structured according to EAV:
 
 ### Backend
   - based on **Django 2** and **Django Rest Framework 3.7**;
-  - compliant with **flake8**, **"Two Scoops"** and talks of Raymond Hattinger;
+  - compliant with **flake8**, **"Two Scoops"*** and talks of Raymond Hattinger;
   - tested with **py.test**;
   - environment variables are passed through **python-decouple**;
   - packages are counted by **pipenv**;
@@ -36,6 +36,8 @@ Here is the diagram of our database, with tables structured according to EAV:
 **A note on tests**. I'll start from a distance, please bear with me. What is a better way to write a file with our project's requirements - simple and readable, only top-level dependencies, or every dependency with its version exactly, like a "pip freeze" would generate? The second approach seems to be the way to go if we are forced to choose, but it's just cumbersome. Can we do better? Yes, we can have the best of both worlds - two files. And we don't need to do it by hand, Kenneth Reitz has already wrote [a tool for that](https://www.kennethreitz.org/essays/a-better-pip-workflow).
 
 Now a similar question about tests. What's better - to have quick, mocked, in-memory suite of unit tests, or slow, integrated, end-to-end test suite with real services? Obviously, the same test cannot be fast while using real services, yet we want both. The answer? Two test suites: one fast and mocked, other slow and real, each covering the code 100%. There is a name for this style of testing - [London School of TDD](https://github.com/testdouble/contributing-tests/wiki/London-school-TDD), and that's how tests for this project are written. One nice consequence of this approach is that we don't have to write integration tests, from the middle of the [testing pyramid](https://github.com/testdouble/contributing-tests/wiki/Testing-Pyramid).
+
+* The only exception is public exposure of serial primary keys.
 
 ### Frontend
 - a single page application using **VueJS** together with **Vue Router** and **Vuex**;
@@ -56,12 +58,17 @@ That's the workflow for updating the already existing deployment, though. Initia
 2. Using db's endpoint from Step 1, initiate Zappa deployment
 3. Using Lambda's endpoint from Step 2, build production version of Vue frontend and upload it to S3 bucket, connected with CloudFront.
 
-**Important**: initiating and updating Zappa deployment, as well as building and uploading Vue frontend, should be done exclusively in Docker containers. See .travis.yml file how continuous integration system is set to do it, for inspiration. Ideally you would initially deploy the whole thing just by creating a CloudFormation stack, and one day I will know how to integrate Zappa into that thing.
+**Important**: initiating and updating Zappa deployment, as well as building and uploading Vue frontend, should be done exclusively in Docker containers. See .travis.yml file how continuous integration system is set to do it, for inspiration.
+
+Ideally you would initially deploy the whole thing just by creating a CloudFormation stack, and one day I will know how to integrate Zappa into that thing.
 
 ### References:
 *Data Model*
+
 See presentation by Juergen Schackmann at DjangoCon EU 2013: Dynamic Models in Django, comparing different approaches to implementing dynamic models
+
 video: https://www.youtube.com/watch?v=67wcGdk4aCc
+
 slides: https://www.slideshare.net/schacki/django-dynamic-models20130502
 
 Many people strongly condemn Entity-Attribute-Value, calling it an anti-pattern:
@@ -71,6 +78,7 @@ Many people strongly condemn Entity-Attribute-Value, calling it an anti-pattern:
 so we should start thinking as early as possible about moving from it.
 
 *Backend*
+
 Some extremely good talks that explain and justify the testing approach I use here
 - [Please don’t mock me (and other test double advice)](https://vimeo.com/257056050) by Justin Searls
 - [Integrated Tests Are A Scam](https://vimeo.com/80533536) by J.B. Rainsberger
