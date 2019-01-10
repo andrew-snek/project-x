@@ -37,7 +37,7 @@ Here is the diagram of our database, with tables structured according to EAV:
 
 Now a similar question about tests. What's better - to have quick, mocked, in-memory suite of unit tests, or slow, integrated, end-to-end test suite with real services? Obviously, the same test cannot be fast while using real services, yet we want both. The answer? Two test suites: one fast and mocked, other slow and real, each covering the code 100%. There is a name for this style of testing - [London School of TDD](https://github.com/testdouble/contributing-tests/wiki/London-school-TDD), and that's how tests for this project are written. One nice consequence of this approach is that we don't have to write integration tests, from the middle of the [testing pyramid](https://github.com/testdouble/contributing-tests/wiki/Testing-Pyramid).
 
-* The only exception is public exposure of serial primary keys.
+\* *The only exception is public exposure of serial primary keys.*
 
 ### Frontend
 - a single page application using **VueJS** together with **Vue Router** and **Vuex**;
