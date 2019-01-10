@@ -171,7 +171,7 @@ export default {
   },
   mounted: function () {
     this.$store.dispatch('initAbstractRisks')
-    this.$store.dispatch('initFieldtypes')
+    this.$store.dispatch('initFieldTypes')
   },
   methods: {
     deleteAbstractRisk (abstractRiskID) {

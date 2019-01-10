@@ -17,7 +17,7 @@ const mutations = {
 }
 
 const actions = {
-  initFieldtypes: ({ commit }) => {
+  initFieldTypes: ({ commit }) => {
     axios.get('fieldtypes/')
       .then(resp => {
         commit('SET_FIELDTYPES', resp.data)

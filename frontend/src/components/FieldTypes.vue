@@ -192,7 +192,7 @@ export default {
     }
   },
   mounted: function () {
-    this.$store.dispatch('initFieldtypes')
+    this.$store.dispatch('initFieldTypes')
   },
   methods: {
     deleteFieldType (fieldTypeID) {

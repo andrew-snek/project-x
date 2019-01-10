@@ -44,6 +44,12 @@ export default new Router({
       name: 'abstractrisks',
       component: () => import('./components/AbstractRisks.vue'),
       beforeEnter: ifAuthenticated
+    },
+    {
+      path: '/risks',
+      name: 'risks',
+      component: () => import('./components/Risks.vue'),
+      beforeEnter: ifAuthenticated
     }
   ]
 })

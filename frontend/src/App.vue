@@ -88,6 +88,8 @@ export default {
     isAuthenticated (auth) {
       if (!auth) {
         this.drawer = false
+      } else {
+        this.drawer = true
       }
     }
   }

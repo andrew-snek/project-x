@@ -4,6 +4,7 @@ import Vuex from 'vuex'
 import user from './modules/user'
 import fieldtypes from './modules/fieldtypes'
 import abstractrisks from './modules/abstractrisks'
+import risks from './modules/risks'
 
 Vue.use(Vuex)
 
@@ -23,6 +24,7 @@ export default new Vuex.Store({
   modules: {
     user,
     fieldtypes,
-    abstractrisks
+    abstractrisks,
+    risks
   }
 })
