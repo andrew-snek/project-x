@@ -53,6 +53,7 @@ def risk_data():
         ]
     }
 
+
 @pytest.fixture
 def patched_get_regexes(mocker):
     patched = mocker.patch(
@@ -60,6 +61,7 @@ def patched_get_regexes(mocker):
     )
     patched.return_value = ['^onlythis$', '^.{7}$']
     return patched
+
 
 @pytest.fixture
 def patched_get_non_matching_fields(mocker):

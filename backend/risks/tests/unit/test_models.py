@@ -49,6 +49,7 @@ class TestField:
         for field in ['risk', 'value']:
             getattr(Field, field)
 
+
 class TestRisk:
     def test_fields(self):
         for field in ['name', 'abstract_risk']:

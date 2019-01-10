@@ -2,7 +2,9 @@ from django.db import transaction
 from django.db.models.deletion import ProtectedError
 from rest_framework.generics import DestroyAPIView,  ListCreateAPIView
 from risks.models import FieldType, AbstractRisk, Risk
-from risks.serializers import FieldTypeSerializer, AbstractRiskSerializer, RiskSerializer
+from risks.serializers import (
+    FieldTypeSerializer, AbstractRiskSerializer, RiskSerializer
+)
 from risks.exceptions import CannotDeleteAlreadyInUse
 
 

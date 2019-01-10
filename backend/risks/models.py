@@ -40,7 +40,11 @@ class AbstractRisk(models.Model):
 
 
 class Field(models.Model):
-    risk = models.ForeignKey('Risk', on_delete=models.CASCADE, related_name='fields')
+    risk = models.ForeignKey(
+        'Risk',
+        on_delete=models.CASCADE,
+        related_name='fields'
+    )
     value = models.CharField(max_length=3000)
 
 

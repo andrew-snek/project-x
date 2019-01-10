@@ -1,12 +1,15 @@
 import pytest
 from risks.validation_helpers import get_non_matching_fields
 
+
 @pytest.fixture
 def regexes():
     return ['abc', '^onlythis$', '^.{7}$']
 
 
 field_values = ['abcd', 'onlythis', '123f567']
+
+
 @pytest.fixture
 def fields():
     return [

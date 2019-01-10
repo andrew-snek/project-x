@@ -79,7 +79,8 @@ class RiskSerializer(serializers.ModelSerializer):
             err_msg = 'Field\'s value doesn\'t match the regex'
             raise serializers.ValidationError({
                 'fields': {
-                    field_num: {'value': [err_msg]} for field_num in non_matching_fields
+                    field_num: {'value': [err_msg]}
+                    for field_num in non_matching_fields
                 }
             })
 

@@ -123,7 +123,7 @@ def test_e2e(transactional_db, field_type_data, abstract_risk_data, risk_data):
     # Test Risk
     risks_url = 'http://localhost/api/v1/risks/'
     url = risks_url
-    get(url, []) # No Risks at first
+    get(url, [])  # No Risks at first
 
     # Create first Risk
     post(url, risk_data[0])
@@ -157,7 +157,6 @@ def test_e2e(transactional_db, field_type_data, abstract_risk_data, risk_data):
     get(url, [risk_data[0], risk_data[1]])
 
     # An error, if Fields' values are not matched by FieldTypes' regexes
-    #risk_data[2]['name'] = ''
     risk_data[2]['fields'][0]['value'] = 'NOTJUSTTHIS'
     risk_data[2]['fields'][1]['value'] = 'XYZ'
     resp = post(url, risk_data[2], status=400, err=['fields'])
